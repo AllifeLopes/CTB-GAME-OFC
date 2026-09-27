@@ -1,0 +1,17 @@
+COMO ATIVAR O PAINEL ADMINISTRATIVO
+
+1. Crie um projeto no Firebase Console: https://console.firebase.google.com/
+2. Em Authentication > Sign-in method, habilite E-mail/senha.
+3. Em Authentication > Users, crie MANUALMENTE seu usuário administrador com e-mail e senha forte. Copie o UID do usuário.
+4. Em Firestore Database, crie um banco de dados.
+5. Abra firestore.rules e substitua SEU_UID_ADMIN pelo UID copiado (mantenha as aspas). Cole as regras em Firestore > Rules e clique em Publicar.
+6. Em Configurações do projeto > Seus aplicativos, adicione um aplicativo Web e copie apiKey, authDomain, projectId e appId para firebase-config.js.
+7. Publique todos os arquivos preservando as pastas no GitHub Pages (ou outro servidor HTTPS). Acesse /admin.html para entrar.
+8. Cadastre uma questão e confira se ela aparece em Firestore e em uma nova partida no jogo.
+
+IMPORTANTE:
+- Não há senha de administrador embutida no código. Somente o UID configurado nas regras pode gravar questões.
+- O login de jogadores existente continua LOCAL (localStorage), não é seguro para cobrança/premium nem sincronizado entre dispositivos.
+- As 50 questões originais continuam no script do jogo; o painel gerencia as questões ADICIONAIS salvas no Firestore.
+- Se não configurar Firebase, o jogo original permanece funcional e o painel mostra instruções de configuração.
+- Para o painel carregar, o projeto precisa permitir acesso ao Firebase e à CDN dos scripts.

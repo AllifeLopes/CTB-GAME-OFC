@@ -1,0 +1,13 @@
+CTB GAME — 50 QUESTÕES SEM REPETIÇÃO
+
+• 50 questões fornecidas pelo usuário.
+• IDs únicos: CTB0001 a CTB0050.
+• Cada partida sorteia até 10 questões ainda não respondidas pelo jogador.
+• Ao responder, o ID é salvo no histórico desse jogador.
+• Uma questão respondida não volta a aparecer para o mesmo jogador neste navegador.
+• Após as 50 questões, o jogo informa que o banco foi concluído.
+• Cada acerto vale 10 pontos e o sistema de patentes continua ativo.
+
+IMPORTANTE: login, histórico e recordes ainda usam localStorage/sessionStorage.
+Assim, o histórico é por navegador/dispositivo. Para sincronizar a conta entre
+computadores e celulares será necessário banco de dados/backend.

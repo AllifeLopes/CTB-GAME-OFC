@@ -1,0 +1,39 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isAdmin() {
+      return request.auth != null && request.auth.uid == 'SEU_UID_ADMIN';
+    }
+    match /admin_access/{document} {
+      allow read: if isAdmin();
+      allow write: if false;
+    }
+    match /questoes/{id} {
+      allow read: if true;
+      allow create: if isAdmin()
+        && request.resource.data.keys().hasOnly(['text','answer','explanation','subject','createdAt'])
+        && request.resource.data.text is string
+        && request.resource.data.text.size() > 0
+        && request.resource.data.text.size() <= 5000
+        && request.resource.data.answer is bool
+        && request.resource.data.explanation is string
+        && request.resource.data.explanation.size() > 0
+        && request.resource.data.explanation.size() <= 5000
+        && request.resource.data.subject is string
+        && request.resource.data.subject.size() <= 100;
+      allow update: if isAdmin()
+        && request.resource.data.keys().hasOnly(['text','answer','explanation','subject','createdAt'])
+        && request.resource.data.text is string
+        && request.resource.data.text.size() > 0
+        && request.resource.data.text.size() <= 5000
+        && request.resource.data.answer is bool
+        && request.resource.data.explanation is string
+        && request.resource.data.explanation.size() > 0
+        && request.resource.data.explanation.size() <= 5000
+        && request.resource.data.subject is string
+        && request.resource.data.subject.size() <= 100;
+      allow delete: if isAdmin();
+    }
+    match /{document=**} { allow read, write: if false; }
+  }
+}
